@@ -1,0 +1,4 @@
+third_party/
+docs/lfw_mmdet.py
+data/
+checkpoints/

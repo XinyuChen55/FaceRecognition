@@ -22,12 +22,13 @@ pip install -U openmim
 mim install "mmcv-full==1.5.3" -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
 
 # install mmdetection
-pip install "mmdet<=2.25.1"
+mkdir -p third_party
+git clone --branch v2.25.1 --depth 1 https://github.com/open-mmlab/mmdetection.git third_party/mmdetection
+pip install -e third_party/mmdetection
 
 # Install mmhuman3d
-git clone https://github.com/open-mmlab/mmhuman3d.git
-cd mmhuman3d
-pip install -v -e .
+git clone https://github.com/open-mmlab/mmhuman3d.git third_party/mmhuman3d
+pip install -e thrid_party/mmhuman3d
 
 # verify installation
 python -c "import sys; print('python', sys.version)"
