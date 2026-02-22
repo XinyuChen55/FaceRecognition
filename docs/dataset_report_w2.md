@@ -1,4 +1,4 @@
-#Week 2 进度报告：探索CelebA和LFW数据集
+# Week 2 进度报告：探索CelebA和LFW数据集
 
 ## 1. 主要完成内容
 
@@ -9,7 +9,7 @@
 5. 对CelebA数据集的其中五个属性进行统计分析并可视化
 
 ## 2. 数据集基础信息
-通过运行 ![dataset_test](./dataset_test.py)得到了基础信息：
+通过运行 'docs/dataset_test.py' 得到了基础信息：
 
 **LFW**的图片总数为13233，人物总数为5749
 **CelebA**的图片总数为202599
@@ -19,7 +19,7 @@
 从CelebA抽取的16个随机样本 ![CelebA Random Samples](../assets/outputs/dataset_test/celeba_random.png)
 
 ## 4. LFW人物分布分析
-![CelebA Random Samples](../assets/outputs/dataset_test/celeba_random.png)
+![LFW Top 20 Identities](../assets/outputs/dataset_test/lfw_top20images.png)
 从图里可以看出LFW数据集的人物样本分布不是很均匀，第一名的图片数量明显远高于其他人，超过500张，从第六名开始的样本数量都大约在40-100张之间，后面的样本数量差别相对没那么大。
 
 ## 5. CelebA样本的属性正负分布分析
