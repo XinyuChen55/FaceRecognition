@@ -38,3 +38,35 @@ python -c "import mmcv; print('mmcv', mmcv.__version__)"
 python -c "import mmdet; print('mmdet', mmdet.__version__)"
 python -c "import mmhuman3d; print('mmhuman3d', mmhuman3d.__version__)"
 python -c "import numpy as np; print('numpy', np.__version__)"
+
+# install Kaggle CLI for dataset download
+pip install kaggle
+
+### 1: Generate API Token
+1. Sign in to Kaggle.
+2. Go to **Setting**.
+3. Click **Create Legacy API Key**.
+4. A file named `kaggle.json` will be downloaded.
+
+### 2: Place `kaggle.json` in the Correct Directory
+mkdir ~\.kaggle
+move kaggle.json ~\.kaggle\
+
+# download LFW dataset
+mkdir -p data/lfw_raw
+kaggle datasets download -d jessicali9530/lfw-dataset -p data/lfw_raw
+unzip data/lfw_raw/lfw-dataset.zip -d data/lfw
+
+# download CelebA dataset
+mkdir -p data/celebA_raw
+kaggle datasets download -d jessicali9530/celeba-dataset -p data/celebA_raw
+unzip data/celebA_raw/celeba-dataset.zip -d data/celebA
+
+# download MMHuman3D Body Model
+mkdir -p data/body_models
+
+wget -O data/body_models/J_regressor_extra.npy "https://openmmlab-share.oss-cn-hangzhou.aliyuncs.com/mmhuman3d/models/J_regressor_extra.npy?versionId=CAEQHhiBgIDD6c3V6xciIGIwZDEzYWI5NTBlOTRkODU4OTE1M2Y4YTI0NTVlZGM1" 
+
+wget -O data/body_models/J_regressor_h36m.npy "https://openmmlab-share.oss-cn-hangzhou.aliyuncs.com/mmhuman3d/models/J_regressor_h36m.npy?versionId=CAEQHhiBgIDE6c3V6xciIDdjYzE3MzQ4MmU4MzQyNmRiZDA5YTg2YTI5YWFkNjRi"
+
+wget -O data/body_models/smpl_mean_params.npz "https://openmmlab-share.oss-cn-hangzhou.aliyuncs.com/mmhuman3d/models/smpl_mean_params.npz?versionId=CAEQHhiBgICN6M3V6xciIDU1MzUzNjZjZGNiOTQ3OWJiZTJmNThiZmY4NmMxMTM4"
