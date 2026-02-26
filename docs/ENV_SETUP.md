@@ -26,6 +26,11 @@ mkdir -p third_party
 git clone --branch v2.25.1 --depth 1 https://github.com/open-mmlab/mmdetection.git third_party/mmdetection
 pip install -e third_party/mmdetection
 
+# download model checkpoint
+mkdir -p checkpoints/retinanet_r50_fpn_1x_coco
+wget -O checkpoints/retinanet_r50_fpn_1x_coco/retinanet_r50_fpn_1x_coco_20200130-c2398f9e.pth \
+https://download.openmmlab.com/mmdetection/v2.0/retinanet/retinanet_r50_fpn_1x_coco/retinanet_r50_fpn_1x_coco_20200130-c2398f9e.pth
+
 # Install mmhuman3d
 git clone https://github.com/open-mmlab/mmhuman3d.git third_party/mmhuman3d
 pip install -e thrid_party/mmhuman3d
@@ -64,9 +69,35 @@ unzip data/celebA_raw/celeba-dataset.zip -d data/celebA
 
 # download MMHuman3D Body Model
 mkdir -p data/body_models
+mkdir -p data/body_models/smpl
+
+Register and download the SMPL model files from the official sources: https://smpl.is.tue.mpg.de/index.html and place them in data/body_models/smpl/ 
+For example, `mv basicModel_neutral_lbs_10_207_0_v1.0.0.pkl SMPL_NEUTRAL.pkl`
 
 wget -O data/body_models/J_regressor_extra.npy "https://openmmlab-share.oss-cn-hangzhou.aliyuncs.com/mmhuman3d/models/J_regressor_extra.npy?versionId=CAEQHhiBgIDD6c3V6xciIGIwZDEzYWI5NTBlOTRkODU4OTE1M2Y4YTI0NTVlZGM1" 
 
 wget -O data/body_models/J_regressor_h36m.npy "https://openmmlab-share.oss-cn-hangzhou.aliyuncs.com/mmhuman3d/models/J_regressor_h36m.npy?versionId=CAEQHhiBgIDE6c3V6xciIDdjYzE3MzQ4MmU4MzQyNmRiZDA5YTg2YTI5YWFkNjRi"
 
 wget -O data/body_models/smpl_mean_params.npz "https://openmmlab-share.oss-cn-hangzhou.aliyuncs.com/mmhuman3d/models/smpl_mean_params.npz?versionId=CAEQHhiBgICN6M3V6xciIDU1MzUzNjZjZGNiOTQ3OWJiZTJmNThiZmY4NmMxMTM4"
+
+# checkpoint for MMHuman3D
+mkdir -p checkpoints/MMHuman3D
+wget -O checkpoints/MMHuman3D/resnet50_hmr_pw3d.pth https://openmmlab-share.oss-cn-hangzhou.aliyuncs.com/mmhuman3d/models/hmr/resnet50_hmr_pw3d-04f40f58_20211201.pth?versionId=CAEQHhiBgMD6zJfR6xciIDE0ODQ3OGM2OWJjMTRlNmQ5Y2ZjMWZhMzRkOTFiZDFm
+
+# download WIDER FACE Dataset
+Go to: `http://shuoyang1213.me/WIDERFACE/`
+
+Download the following files:
+- **WIDER Face Training Images**
+- **WIDER Face Validation Images**
+- **WIDER Face Tesing Images**
+- **Face annotations**
+
+mkdir -p data/widerface
+mv /path/to/your/downloads/WIDER_*.zip data/widerface/
+mv /path/to/your/downloads/wider_face_split*.zip data/widerface/
+cd data/widerface
+unzip -q WIDER_train.zip
+unzip -q WIDER_val.zip
+unzip -q WIDER_test.zip
+unzip -q wider_face_split.zip
