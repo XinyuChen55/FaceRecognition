@@ -101,3 +101,27 @@ unzip -q WIDER_train.zip
 unzip -q WIDER_val.zip
 unzip -q WIDER_test.zip
 unzip -q wider_face_split.zip
+
+# download MMPose
+There will be conflicts about PyTorch version, etc. so we need to create new env
+
+conda create -n mmpose python=3.10 -y
+conda activate mmpose
+
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+
+pip install numpy==1.26.4
+pip uninstall -y opencv-python opencv-contrib-python opencv-python-headless
+pip install opencv-python==4.8.1.78
+
+pip install -U pip setuptools wheel
+pip install -U openmim
+mim install mmengine
+pip install mmcv==2.1.0 -f https://download.openmmlab.com/mmcv/dist/cu121/torch2.1/index.html
+pip install mmdet==3.2.0
+
+cd third_party
+git clone https://github.com/open-mmlab/mmpose.git
+cd mmpose
+pip install -r requirements.txt
+pip install -v -e .
