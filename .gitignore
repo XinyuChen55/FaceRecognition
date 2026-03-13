@@ -2,3 +2,4 @@ third_party/
 data/
 checkpoints/
 work_dirs/
+assets/outputs/best_model_dynamic_quant.pt
