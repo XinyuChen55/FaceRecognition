@@ -165,6 +165,27 @@ class MXFaceDataset(Dataset):
             rng = np.random.default_rng(seed)
             perm = rng.permutation(len(self.imgidx))[:subset_size]
             self.imgidx = self.imgidx[perm]
+        
+        from collections import defaultdict
+        id_to_imgs = defaultdict(list)
+
+        for idx in self.imgidx:
+            s = self.imgrec.read_idx(int(idx))
+            header, _ = mx.recordio.unpack(s)
+            label = header.label
+            if not isinstance(label, numbers.Number):
+                label = label[0]
+            identity = int(label)
+            id_to_imgs[identity].append(int(idx))
+            
+        eligible_ids = [identity for identity, imgs in id_to_imgs.items()
+                        if len(imgs) >= 3]
+        n1 = 0
+        for identity, imgs in id_to_imgs.items():
+            n1 += len(imgs)
+        print(f"total identities: {len(id_to_imgs)}")
+        print(f"eligible identities with >= {3} imgs: {len(eligible_ids)}")
+        print(f"number of images {n1}")
 
     def __getitem__(self, index):
         idx = self.imgidx[index]
