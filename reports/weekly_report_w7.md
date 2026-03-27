@@ -10,8 +10,6 @@
 
 4. 然后我选择了一张图片进行多个角度可视化，包括正面视角，左转30度，左转60度，右转30度，右转60度，俯视角，下视角，具体的代码在 [visualization.py](../docs/3d_reconstruct/visualization.py)，同时我保留了原图作为对照，具体的结果在 [3d_reconstruct_multi_view](../assets/outputs/3d_reconstruct_multi_view)。
 
-5. 最后我开始学习基于人脸关键点的动态特效，我学习了MediaPipe Face Landmark和OpenCV的一些文件，了解了怎么用OpenCV读取摄像头画面，并用MediaPipe对图像进行人脸关键点检测，然后把结果实时返回到摄像头画面里。具体的代码在 [real_time_landmarks.py](../docs/dynamic_effects/real_time_landmarks.py)，我截了一张图作为参考：
+5. 最后我开始学习基于人脸关键点的动态特效，我学习了MediaPipe Face Landmark和OpenCV的一些文件，了解了怎么用OpenCV读取摄像头画面，并用MediaPipe对图像进行人脸关键点检测，然后把结果实时返回到摄像头画面里。具体的代码在 [real_time_landmarks.py](../docs/dynamic_effects/real_time_landmarks.py)，我截了一张图作为参考，后续做动态特效，贴纸和美妆时就可以直接基于这些关键点来确定五官然后实现具体的功能：
 
-![alt text](image-5.png)
-
-    后续做动态特效，贴纸和美妆时就可以直接基于这些关键点来确定五官然后实现具体的功能。
+<img src="image-5.png" width="500">
