@@ -3,14 +3,10 @@
 本周我完成了任务九的动态特效实现
 
 1. 我首先实现了眼镜贴纸效果。我先从官方图片里得到每个关键点具体的index: https://storage.googleapis.com/mediapipe-assets/documentation/mediapipe_face_landmark_fullsize.png ，并选择左右眼外眼角的关键点来确定眼镜位置，根据这两个关键点的中点计算贴纸中心，确定贴纸大小和旋转角度。之后我通过 PNG 图片的 alpha 通道把眼镜叠加到原图上。然后我发现眼镜在歪头时边缘会被裁掉，后面通过重新计算旋转后的贴纸大小解决了。同时对于侧脸，贴纸效果就不是很好，因为眼镜贴纸只有正面。具体的代码在 [sticker.py](../docs/dynamic_effects/sticker.py)，具体的效果如下：
-    <div align="center" style="font-size: 24px; font-weight: bold;">
-    动态帽子贴纸特效
-    </div>
-    <img src="./effects_results/image-8.png" alt="Dynamic effect result" width="300">
-    <div align="center" style="font-size: 24px; font-weight: bold;">
-    歪头的效果
-    </div>
-    <img src="./effects_results/image-9.png" alt="Dynamic effect result" width="300">
+    <div>动态帽子贴纸特效</div>
+    <img src="./effects_results/image-8.png" alt="Dynamic effect result" width="400">
+    <div>歪头的效果</div>
+    <img src="./effects_results/image-9.png" alt="Dynamic effect result" width="400">
 
 
 3. 然后我用同样的思路添加了帽子的贴纸，但是歪头时帽子会偏很多，然后我发现应该先计算脸的方向向量，再进一步求出向上的法向量，歪头时帽子应该沿着头顶向上的方向偏移而不是直接往上减 y。具体的代码也在 [sticker.py](../docs/dynamic_effects/sticker.py)，具体的效果如下：
