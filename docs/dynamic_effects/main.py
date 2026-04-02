@@ -12,8 +12,8 @@ model_path = './data/face_landmarker.task'
 landmarks_results = None
 
 #options for sticker and beauty effects
-ENABLE_GLASSES = True
-ENABLE_HAT = False
+ENABLE_GLASSES = False
+ENABLE_HAT = True
 ENABLE_SMOOTH = False
 ENABLE_WHITENING = False
 ENABLE_LIPSTICK = False
