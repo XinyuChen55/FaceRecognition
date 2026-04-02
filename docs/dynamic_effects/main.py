@@ -12,16 +12,16 @@ model_path = './data/face_landmarker.task'
 landmarks_results = None
 
 #options for sticker and beauty effects
-ENABLE_GLASSES = False
+ENABLE_GLASSES = True
 ENABLE_HAT = True
-ENABLE_SMOOTH = False
-ENABLE_WHITENING = False
-ENABLE_LIPSTICK = False
+ENABLE_SMOOTH = True
+ENABLE_WHITENING = True
+ENABLE_LIPSTICK = True
 
-SMOOTH_STRENGTH = 1 #ranges from 0.0 to 1.0
-WHITENING_STRENGTH = 30 #ranges from 0 to much larger values
-LIPSTICK_STRENGTH = 0.2 #ranges from 0.0 to 1.0
-LIPSTICK_COLOR = (0, 0, 255) #in BGR order
+SMOOTH_STRENGTH = 0.6 #ranges from 0.0 to 1.0
+WHITENING_STRENGTH = 20 #ranges from 0 to much larger values
+LIPSTICK_STRENGTH = 0.1 #ranges from 0.0 to 1.0
+LIPSTICK_COLOR = (80, 0, 255) #in BGR order
 
 # Create the task
 BaseOptions = mp.tasks.BaseOptions
@@ -37,7 +37,7 @@ def print_result(result: FaceLandmarkerResult, output_image: mp.Image, timestamp
 
 def main(ENABLE_GLASSES=ENABLE_GLASSES, ENABLE_HAT=ENABLE_HAT, 
          ENABLE_SMOOTH=ENABLE_SMOOTH, ENABLE_WHITENING=ENABLE_WHITENING, 
-         ENABLE_LIPSTICK=ENABLE_WHITENING, frames_num = None):
+         ENABLE_LIPSTICK=ENABLE_LIPSTICK, frames_num = None):
     global landmarks_results
     options = FaceLandmarkerOptions(
         base_options=BaseOptions(model_asset_path=model_path),
