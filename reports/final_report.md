@@ -54,15 +54,49 @@
     <p align="center">
     <img src="../assets/outputs/attrs_edit/1-images.jpg" alt="Image 4" width="55%" />
     </p>
-    
-8. 在 3D 人脸重建任务中，我学习了 3DMM、NeRF 等三维重建相关基础概念，并尝试使用 PRNet 或 3DDFA_V2 从单张图像恢复 3D 人脸结构。之后，我利用 PyTorch3D 对重建结果进行渲染和可视化，并借助多角度观察分析模型效果。从结果来看，正面和小角度侧脸的重建效果相对较好，而在大角度侧脸或不可见区域，容易出现纹理拉伸和细节失真。这也让我认识到单张图像三维重建在不可见区域恢复方面仍然存在一定局限。
 
-9. 在动态特效实现部分，我完成了基于实时人脸关键点检测的动态贴纸和基础美颜美妆功能。具体而言，我实现了实时关键点跟踪，并将贴纸叠加到检测到的人脸区域上。同时，我还实现了磨皮、美白和口红三类基础特效。其中，磨皮和美白主要通过构造人脸区域 mask，再将处理后的图像与原图进行局部融合来完成；口红效果则基于嘴唇关键点区域生成 lip mask，并在对应区域叠加颜色。通过这一阶段，我将前面学习到的检测、关键点与图像处理能力综合应用到了实时视频场景中。
+8. 在 3D 人脸重建任务中，我学习了 3DMM、NeRF 等三维重建的基础原理，并使用 3DDFA_V2 从单张图像恢复 3D 人脸结构，然后将得到的 .obj 文件导入 MeshLab 进行可视化，部分的重建结果如下。之后，我利用 PyTorch3D 对重建结果进行渲染和可视化，并借助多角度观察分析模型效果，部分结果如下。从整体结果来看，正面和小角度侧脸的重建效果相对较好，而对于大角度侧脸和不可见区域容易出现纹理拉伸和细节失真。
 
-## 收获与总结
+    <p align="center">
+    <img src="../assets/test_imgs/3d_reconstruct/1602308_1.jpg" alt="Image 2" width="30%" />
+    <img src="./image-8.png" alt="Image 2" width="30%" />
+    <img src="../assets/outputs/3d_reconstruct_render/1602308_1_render.png" alt="Image 2" width="30%" />
+    </p>
 
-通过本项目，我较系统地完成了从人脸检测、人脸关键点定位、人脸对齐、人脸识别，到模型优化、人脸属性编辑、3D 人脸重建和动态特效实现的完整学习与实践过程。
+    <p align="center">
+    <img src="../assets/test_imgs/3d_reconstruct/16413031_1.jpg" alt="Image 3" width="30%" />
+    <img src="./image-9.png" alt="Image 3" width="30%" />
+    <img src="../assets/outputs/3d_reconstruct_render/16413031_1_render.png" alt="Image 4" width="30%" />
+    </p>
 
-从知识层面来看，我加深了对卷积神经网络、ArcFace、GAN、3DMM 以及神经渲染相关概念的理解；从工程层面来看，我提升了使用 PyTorch、OpenCV、ONNX、PyTorch3D 等工具的能力；从实践层面来看，我也积累了处理环境依赖、阅读配置文件、分析模型结果和实现实时视觉效果的经验。
+    <div>对第一张图的渲染结果进行的多角度观察</div>
+    <p align="center">
+    <img src="../assets/outputs/3d_reconstruct_multi_view/front.png" alt="Image 3" width="30%" />
+    <img src="../assets/outputs/3d_reconstruct_multi_view/left30.png" alt="Image 3" width="30%" />
+    <img src="../assets/outputs/3d_reconstruct_multi_view/left60.png" alt="Image 4" width="30%" />
+    </p>
 
-总体而言，本项目让我对智能视觉中“人脸识别 + 人脸特效”这一方向形成了较完整的认识，也进一步提高了我将理论知识转化为实际系统功能的能力。
+    <p align="center">
+    <img src="../assets/outputs/3d_reconstruct_multi_view/top.png" alt="Image 3" width="24%" />
+    <img src="../assets/outputs/3d_reconstruct_multi_view/down.png" alt="Image 3" width="24%" />
+    <img src="../assets/outputs/3d_reconstruct_multi_view/right30.png" alt="Image 3" width="24%" />
+    <img src="../assets/outputs/3d_reconstruct_multi_view/right60.png" alt="Image 4" width="24%" />
+    </p>
+
+9. 在动态特效实现部分，我完成了基于实时人脸关键点检测的动态贴纸和基础美颜美妆功能。首先我了解了怎么用OpenCV读取摄像头画面，并用MediaPipe对图像进行人脸关键点检测，然后把结果实时返回到摄像头画面里，这样视频里就能实现实时的人脸关键点检测，然后根据具体的关键点位置，我将眼镜和帽子贴纸叠加到检测到的人脸区域上。同时，我还实现了磨皮、美白和口红三种美颜特效。主要通过构造人脸区域 mask，再将处理后的图像与原图进行局部融合来完成。通过这些任务，我将前面学习到的人脸检测、关键点与图像处理能力一起应用到了实时视频场景中。部分的特效实现结果如下，更多测试的结果在 ![weekly_report_w8.md](./weekly_report_w8.md)。
+
+    <div>动态眼镜贴纸特效和歪头的效果</div>
+    <p align="center">
+    <img src="./effects_results/image-8.png" alt="Image 3" width="48%" />
+    <img src="./effects_results/image-9.png" alt="Image 4" width="48%" />
+    </p>
+
+    <div>原图以及磨皮、美白、口红的美颜特效效果</div>
+    <p align="center">
+    <img src="./effects_results/image-12.png" alt="Image 3" width="45%" />
+    <img src="./effects_results/image-13.png" alt="Image 4" width="45%" />
+    </p>
+    <p align="center">
+    <img src="./effects_results/image-14.png" alt="Image 3" width="45%" />
+    <img src="./effects_results/image-15.png" alt="Image 4" width="45%" />
+    </p>
